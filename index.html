@@ -256,6 +256,16 @@ nav.tabs,label.field:has(#f-client),.grid.g2b.mt:has(#pace),#p-empty,#gmn-card{d
 .mini-bar{display:inline-block;width:64px;height:8px;border-radius:4px;background:var(--surface2);vertical-align:middle;margin-left:6px;overflow:hidden}
 .mini-bar i{display:block;height:100%;background:var(--plum)}
 .aud-empty{padding:26px 10px;text-align:center;color:var(--muted)}
+
+@media (max-width:600px){
+ table{font-size:12.5px} th,td{padding:8px 6px} th{font-size:12px}
+ .tbl-wrap::before{content:"Arraste a tabela para o lado para ver todas as colunas \2192";display:block;position:sticky;left:0;font-size:12px;color:var(--muted);margin:0 0 6px;white-space:nowrap}
+ .fn-layer{height:auto;min-height:72px;padding:6px 14%}
+ .fn-v{font-size:20px} .fn-r{font-size:10.5px;white-space:normal}
+ .gtiles{grid-template-columns:minmax(0,1fr)!important}
+ .gtile{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:baseline}
+ .gtile .l{grid-column:1/-1}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -700,9 +710,9 @@ const barLabelPlugin={id:'barLabels',afterDatasetsDraw(chart){try{
   const {ctx,chartArea}=chart;const data=chart.data.datasets[0].data;
   const slot=chartArea.width/Math.max(1,data.length);const size=slot<12?10:11;
   ctx.save();ctx.fillStyle=css('--ink');
-  const items=meta.data.map((bar,i)=>{const v=data[i];if(v==null||(opts.hideZero&&!v))return null;return {bar,i,txt:opts.fmt(v)}}).filter(Boolean);
+  let items=meta.data.map((bar,i)=>{const v=data[i];if(v==null||(opts.hideZero&&!v))return null;return {bar,i,txt:opts.fmt(v)}}).filter(Boolean);
   ctx.font=`600 ${size}px "IBM Plex Sans",system-ui,sans-serif`;
-  const rotate=items.some(x=>ctx.measureText(x.txt).width>slot-3);
+  const rotate=items.some(x=>ctx.measureText(x.txt).width>slot-3);if(rotate&&slot<18&&window.innerWidth<600)items=items.filter(x=>x.i===opts.pk);
   items.forEach(({bar,i,txt})=>{
     ctx.font=`${i===opts.pk?'700':'500'} ${size}px "IBM Plex Sans",system-ui,sans-serif`;
     if(!rotate){ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText(txt,bar.x,bar.y-4)}
@@ -723,7 +733,7 @@ if(window.Chart){Chart.register(optPlugin,barLabelPlugin,stackTotalPlugin);Chart
 function baseOpts(){
   const ink=css('--muted'),grid=css('--line');
   return {responsive:true,maintainAspectRatio:false,animation:{duration:reduced?0:700,easing:'easeOutCubic'},interaction:{mode:'index',intersect:false},
-    layout:{padding:{top:12}},
+    layout:{padding:{top:window.innerWidth<600?44:12}},
     plugins:{legend:{labels:{color:ink,boxWidth:12,usePointStyle:true}},tooltip:{backgroundColor:css('--ink'),titleColor:css('--paper'),bodyColor:css('--paper'),footerColor:css('--sun'),padding:10}},
     scales:{x:{ticks:{color:ink,maxRotation:0,autoSkipPadding:12},grid:{display:false},border:{color:grid}},y:{ticks:{color:ink},grid:{color:grid},border:{display:false}}}};
 }
