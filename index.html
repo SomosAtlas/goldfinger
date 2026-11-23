@@ -317,7 +317,7 @@ nav.tabs,label.field:has(#f-client),.grid.g2b.mt:has(#pace),#p-empty,#gmn-card{d
       <label class="field">Cliente<select id="f-client"></select></label>
       <div class="field">Período
         <div class="seg" id="f-preset">
-          <button data-p="1">Hoje</button><button data-p="7">7 dias</button><button data-p="30" class="on">30 dias</button><button data-p="90">90 dias</button><button data-p="mes">Este mês</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button>
+          <button data-p="1">Hoje</button><button data-p="ontem">Ontem</button><button data-p="7">7 dias</button><button data-p="30" class="on">30 dias</button><button data-p="90">90 dias</button><button data-p="mes">Este mês</button><button data-p="mesant">Mês anterior</button><button data-p="ano">Ano</button>
         </div>
       </div>
       <label class="field">De<input type="date" id="f-from"></label>
@@ -595,6 +595,22 @@ function del(col,id){
   chain=chain.then(()=>db.collection(col).doc(id).delete()).catch(e=>console.error(e));
   return chain;
 }
+/* atualização pontual de dados (23/11) — grava uma vez e marca em opts */
+const PATCH={id:'patch_2026_11_23',docs:{"muxzqc601ue8x__2026-11":{"accountId":"muxzqc601ue8x","clientId":"muxztqctrzhaj","days":{"2026-11-18":{"spend":84.71,"impr":12256,"reach":8857,"clicks":46,"follows":8,"msgs":10,"pvisits":42},"2026-11-19":{"spend":79.41,"impr":11240,"reach":8783,"clicks":39,"msgs":6,"follows":5,"pvisits":21},"2026-11-20":{"spend":73.56,"impr":11258,"reach":8893,"clicks":52,"msgs":6,"follows":5,"pvisits":27},"2026-11-21":{"spend":88.83,"impr":13486,"reach":10696,"clicks":52,"msgs":4,"follows":3,"pvisits":13},"2026-11-22":{"spend":118.92,"impr":17524,"reach":12907,"clicks":72,"msgs":6,"follows":5,"pvisits":37}}},"muxzr8aeatven__2026-11":{"accountId":"muxzr8aeatven","clientId":"muxztqctrzhaj","days":{"2026-11-17":{"spend":126.13,"impr":15107,"reach":11969,"clicks":67,"msgs":10,"pvisits":39,"follows":13},"2026-11-18":{"spend":116.16,"impr":14262,"reach":11441,"clicks":62,"msgs":17,"pvisits":26,"follows":3},"2026-11-19":{"spend":73.54,"impr":11653,"reach":9732,"clicks":54,"msgs":5,"pvisits":20,"follows":3},"2026-11-20":{"spend":62.51,"impr":11308,"reach":9692,"clicks":54,"msgs":7,"pvisits":9,"follows":0},"2026-11-21":{"spend":92.95,"impr":16296,"reach":13404,"clicks":58,"msgs":4,"pvisits":22,"follows":3},"2026-11-22":{"spend":128.8,"impr":19265,"reach":15317,"clicks":74,"msgs":7,"pvisits":25,"follows":5}}},"muxzrhf79g7j0__2026-11":{"accountId":"muxzrhf79g7j0","clientId":"muxztqctrzhaj","days":{"2026-11-17":{"spend":111.07,"impr":12852,"reach":9805,"clicks":63,"msgs":10,"pvisits":46,"follows":9},"2026-11-18":{"spend":127.64,"impr":13935,"reach":10682,"clicks":62,"msgs":7,"pvisits":50,"follows":8},"2026-11-19":{"spend":82.84,"impr":9864,"reach":7712,"clicks":40,"msgs":6,"pvisits":31,"follows":3},"2026-11-20":{"spend":64.82,"impr":8315,"reach":6831,"clicks":16,"msgs":2,"pvisits":15,"follows":2},"2026-11-21":{"spend":82.21,"impr":11593,"reach":9258,"clicks":52,"msgs":4,"pvisits":18,"follows":2},"2026-11-22":{"spend":110.72,"impr":13142,"reach":10047,"clicks":63,"msgs":10,"pvisits":25,"follows":5}}},"muxzrzwnntkgz__2026-11":{"accountId":"muxzrzwnntkgz","clientId":"muxztqctrzhaj","days":{"2026-11-16":{"clicks":104,"follows":10,"impr":13628,"msgs":11,"pvisits":72,"reach":10188,"spend":100.64},"2026-11-17":{"clicks":82,"follows":10,"impr":16082,"msgs":10,"pvisits":70,"reach":11774,"spend":115.07},"2026-11-18":{"spend":107.65,"impr":13209,"reach":9804,"clicks":82,"follows":4,"msgs":14,"pvisits":66},"2026-11-19":{"spend":74.63,"impr":10980,"reach":8459,"clicks":50,"msgs":13,"follows":3,"pvisits":35},"2026-11-20":{"spend":80.88,"impr":12018,"reach":9366,"clicks":54,"msgs":4,"follows":6,"pvisits":25},"2026-11-21":{"spend":106.28,"impr":15327,"reach":12025,"clicks":89,"msgs":8,"follows":8,"pvisits":45},"2026-11-22":{"spend":130.06,"impr":18197,"reach":13543,"clicks":101,"msgs":8,"follows":5,"pvisits":40}}},"muxzsfw90g8ud__2026-11":{"accountId":"muxzsfw90g8ud","clientId":"muxztqctrzhaj","days":{"2026-11-17":{"clicks":64,"follows":3,"impr":16160,"leads":7,"msgs":20,"pvisits":30,"reach":10206,"spend":148.16},"2026-11-18":{"spend":105.66,"impr":10922,"reach":8265,"clicks":55,"follows":6,"msgs":9,"pvisits":34},"2026-11-19":{"spend":60.63,"impr":8157,"reach":6569,"clicks":21,"msgs":1,"follows":4,"pvisits":18},"2026-11-20":{"spend":66.83,"impr":9154,"reach":7144,"clicks":36,"msgs":4,"follows":3,"pvisits":19},"2026-11-21":{"spend":88.04,"impr":11286,"reach":8650,"clicks":43,"msgs":4,"follows":2,"pvisits":16},"2026-11-22":{"spend":130.64,"impr":14808,"reach":11106,"clicks":74,"msgs":9,"follows":3,"pvisits":29}}},"muxzssktzxjnf__2026-11":{"accountId":"muxzssktzxjnf","clientId":"muxztqctrzhaj","days":{"2026-11-17":{"clicks":16,"follows":4,"impr":2181,"leads":2,"msgs":6,"pvisits":6,"reach":1833,"spend":33.77},"2026-11-18":{"spend":40.22,"impr":2301,"reach":1913,"clicks":35,"follows":6,"msgs":9,"pvisits":13,"leads":8},"2026-11-19":{"spend":24.4,"impr":1594,"reach":1275,"clicks":10,"msgs":6,"follows":2,"pvisits":11,"leads":3},"2026-11-20":{"spend":21.39,"impr":1414,"reach":1175,"clicks":17,"msgs":4,"follows":2,"pvisits":10,"leads":3},"2026-11-21":{"spend":29.66,"impr":1764,"reach":1516,"clicks":14,"msgs":3,"follows":0,"pvisits":2,"leads":3},"2026-11-22":{"spend":37.49,"impr":2692,"reach":2208,"clicks":28,"msgs":4,"follows":3,"pvisits":9,"leads":4}}},"muxzvgsl9v88l__2026-11":{"accountId":"muxzvgsl9v88l","clientId":"muxzwtad66opp","days":{"2026-11-18":{"spend":35.0,"impr":2601,"reach":1867,"clicks":46,"msgs":1,"follows":7},"2026-11-19":{"spend":25.78,"impr":1523,"reach":1205,"clicks":33,"msgs":3,"follows":7},"2026-11-20":{"spend":21.59,"impr":1624,"reach":1266,"clicks":47,"msgs":3,"follows":0},"2026-11-21":{"spend":23.67,"impr":2056,"reach":1588,"clicks":45,"msgs":4,"follows":5},"2026-11-22":{"spend":44.63,"impr":3086,"reach":2350,"clicks":51,"msgs":7,"follows":6}}},"muxzwvufmi6fz__2026-11":{"accountId":"muxzwvufmi6fz","clientId":"muxzxoe1h3nk8","days":{"2026-11-14":{"spend":8.46,"impr":965,"reach":861,"clicks":1,"msgs":0,"follows":0},"2026-11-15":{"spend":7.42,"impr":706,"reach":634,"clicks":6,"msgs":3,"follows":0},"2026-11-16":{"spend":5.66,"impr":581,"reach":529,"clicks":2,"msgs":1,"follows":0},"2026-11-17":{"spend":9.19,"impr":888,"reach":800,"clicks":4,"msgs":1,"follows":0},"2026-11-18":{"spend":4.77,"impr":400,"reach":354,"clicks":1,"msgs":0,"follows":1},"2026-11-19":{"spend":5.55,"impr":528,"reach":470,"clicks":3,"msgs":3,"follows":0},"2026-11-20":{"spend":4.23,"impr":434,"reach":401,"clicks":1,"msgs":0,"follows":0},"2026-11-21":{"spend":5.07,"impr":412,"reach":390,"clicks":0,"msgs":0,"follows":0},"2026-11-22":{"spend":6.33,"impr":479,"reach":438,"clicks":4,"msgs":4,"follows":0}}},"muxzysa4wsog0__2026-11":{"accountId":"muxzysa4wsog0","clientId":"muxzzl9i90vbj","days":{"2026-11-14":{"spend":21.57,"impr":3327,"reach":2343,"clicks":46,"msgs":5,"follows":12},"2026-11-15":{"spend":22.58,"impr":3699,"reach":2227,"clicks":40,"msgs":5,"follows":14},"2026-11-16":{"spend":21.73,"impr":3247,"reach":2102,"clicks":37,"msgs":3,"follows":9},"2026-11-17":{"spend":23.32,"impr":3749,"reach":2090,"clicks":44,"msgs":6,"follows":9},"2026-11-18":{"spend":22.18,"impr":2942,"reach":2004,"clicks":41,"msgs":7,"follows":12},"2026-11-19":{"spend":20.56,"impr":2328,"reach":1991,"clicks":30,"msgs":12,"follows":10},"2026-11-20":{"spend":18.09,"impr":2170,"reach":1820,"clicks":34,"msgs":3,"follows":12},"2026-11-21":{"spend":18.13,"impr":2008,"reach":1704,"clicks":26,"msgs":3,"follows":13},"2026-11-22":{"spend":13.67,"impr":1369,"reach":1203,"clicks":17,"msgs":8,"follows":3}}}}};
+async function applyPatch(){
+ for(let i=0;i<40&&!Object.keys(S.metrics).length;i++)await new Promise(r=>setTimeout(r,500));
+ await new Promise(r=>setTimeout(r,1200));
+ if(!db||S.opts[PATCH.id]||!Object.keys(S.metrics).length)return;
+ let n=0;
+ for(const [id,p] of Object.entries(PATCH.docs)){
+  const base=S.metrics[id]||{accountId:p.accountId,clientId:p.clientId,month:id.split('__')[1],days:{}};
+  const days={...(base.days||{})};
+  for(const [d,v] of Object.entries(p.days))days[d]={...(days[d]||{}),...v};
+  try{await db.collection('metrics').doc(id).set({...base,accountId:p.accountId,clientId:p.clientId,month:id.split('__')[1],days});n++}catch(e){console.error(e);return}
+ }
+ try{await db.collection('opts').doc(PATCH.id).set({applied:Date.now(),docs:n})}catch(e){}
+ toast('Dados de novembro atualizados até 22/11');
+}
 async function initStore(){
   let cap=null;
   try{cap=window.claude?.use?await window.claude.use('db'):null}catch(e){cap=null}
@@ -603,6 +619,7 @@ async function initStore(){
     for(const col of ['clients','metrics','opts','reports','audience']){
       db.collection(col).onSnapshot(snap=>{const m={};snap.docs.forEach(d=>{m[d.id]=d.data()});S[col]=m;schedule()},err=>{console.error(err);if(err.code==='revoked'||err.code==='not_granted'){db=null;setSync(false);loadLocal();schedule()}});
     }
+    applyPatch();
   }else{loadLocal();setSync(false);schedule()}
 }
 
@@ -1628,7 +1645,8 @@ $('#a-go').onclick=async()=>{
 function switchView(v){st.view=v;$$('nav.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.v===v));$$('section.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));schedule();window.scrollTo({top:0})}
 function setPreset(p){
   st.preset=p;const t=todayISO();
-  if(p==='mes'){st.from=t.slice(0,8)+'01';st.to=t}
+  if(p==='ontem'){const y=addDays(t,-1);st.from=y;st.to=y}
+  else if(p==='mes'){st.from=t.slice(0,8)+'01';st.to=t}
   else if(p==='mesant'){const d=parseISO(t.slice(0,8)+'01');const end=addDays(iso(d),-1);st.from=end.slice(0,8)+'01';st.to=end}
   else if(p==='ano'){st.from=t.slice(0,4)+'-01-01';st.to=t}
   else if(p!=='custom'){st.from=addDays(t,-(+p-1));st.to=t}
