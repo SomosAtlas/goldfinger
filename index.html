@@ -405,7 +405,8 @@ nav.tabs,label.field:has(#f-client),.grid.g2b.mt:has(#pace),#p-empty,#gmn-card{d
       <div class="chart-box sm"><canvas id="c-gmn"></canvas></div>
     </div>
 
-    <div class="grid g2b mt">
+    <!-- ritmo de verba e alertas: só no painel da agência -->
+    <div class="grid g2b mt hidden" id="agency-only" aria-hidden="true">
       <div class="card">
         <h3>Ritmo de verba do mês</h3>
         <div class="sub" id="pace-sub">Gasto até hoje e projeção (linha tracejada) contra a verba mensal</div>
