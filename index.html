@@ -283,7 +283,9 @@ nav.tabs,label.field:has(#f-client),.grid.g2b.mt:has(#pace),#p-empty,#gmn-card{d
 .lp{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .lp .seg button{font-size:13px;padding:5px 10px}
 #aud-card .card-head .lp{flex-basis:100%;order:3}
-#funnel-card{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:4px 24px;align-items:center}
+#funnel-card{display:grid;grid-template-columns:minmax(0,1fr) 190px;gap:4px 24px;align-items:center}
+#funnel-card .fn-tile[data-k="pvisits"]{display:none}
+#funnel-card .fn-tiles{grid-template-columns:minmax(0,1fr)}
 #funnel-card>h3,#funnel-card>.sub{grid-column:1/-1}
 #funnel-card .funnel{flex-direction:row;align-items:center;gap:0;margin-top:10px}
 #funnel-card .fn-layer{flex:1;min-width:0;padding:0 30px 0 34px;margin-left:-12px;clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%,22px 50%)!important}
@@ -360,7 +362,7 @@ nav.tabs,label.field:has(#f-client),.grid.g2b.mt:has(#pace),#p-empty,#gmn-card{d
         <div id="funnel-lp" style="grid-column:1/-1;margin:6px 0 0"></div>
         <div class="funnel" id="funnel"></div>
         <div class="fn-extra">
-          <div class="fn-extra-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Também gerado pelo funil: perfil do Instagram</div>
+          <div class="fn-extra-h"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Perfil do Instagram</div>
           <div class="fn-tiles">
             <div class="fn-tile" data-k="pvisits"><div class="l">Visitas ao perfil</div><div class="v">—</div><div class="d"></div><div class="c"></div></div>
             <div class="fn-tile" data-k="follows"><div class="l">Ganho de seguidores</div><div class="v">—</div><div class="d"></div><div class="c"></div></div>
