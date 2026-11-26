@@ -1855,10 +1855,11 @@ S.clients=DATA.clients;S.metrics=DATA.metrics;S.audience=DATA.audience;S.audday=
       var vOf=function(p,tot){if(st.met==='leads')return p.s.leads;if(st.met==='inv')return p.s.inv;if(st.met==='pct')return tot?p.s.leads/tot:0;return p.s.leads?p.s.inv/p.s.leads:0};
       var fmt=function(v){if(st.met==='leads')return Math.round(v).toLocaleString('pt-BR');if(st.met==='inv')return brl0(v);if(st.met==='pct')return pct(v);return brl(v)};
       var maxV=0;
-      series.forEach(function(g){var tot=g.parts.reduce(function(a,p){return a+p.s.leads},0);g.tot=tot;
+      var grand=series.reduce(function(a,g){return a+g.parts.reduce(function(b,p){return b+p.s.leads},0)},0);
+      series.forEach(function(g){var tot=st.dim==='cat'?grand:g.parts.reduce(function(a,p){return a+p.s.leads},0);g.tot=tot;
         if(stacked){var t=g.parts.reduce(function(a,p){return a+vOf(p,tot)},0);maxV=Math.max(maxV,t)}
         else g.parts.forEach(function(p){if(p.c.k!=='I')maxV=Math.max(maxV,vOf(p,tot))})});
-      if(st.met==='pct')maxV=1; if(!maxV)maxV=1;
+      if(st.met==='pct'&&st.dim!=='cat')maxV=1; if(!maxV)maxV=1;
       var band=cw/series.length,bw=Math.min(stacked?64:band*0.8,band*0.7);
       var y=function(v){return y0+ch-v/maxV*ch};
       svg+='<line x1="'+x0+'" x2="'+(W-16)+'" y1="'+(y0+ch)+'" y2="'+(y0+ch)+'" stroke="var(--line)"/>';
@@ -1873,7 +1874,7 @@ S.clients=DATA.clients;S.metrics=DATA.metrics;S.audience=DATA.audience;S.audday=
             acc+=v});
           var semD=st.dim==='loja'&&!months.some(function(m){return GFC_DATA[m]&&GFC_DATA[m][g.key]});
           if(semD)svg+='<text x="'+cx+'" y="'+(y0+ch-8)+'" text-anchor="middle" font-size="12" fill="var(--muted)">sem dados</text>';
-          else if(st.met!=='pct')svg+='<text x="'+cx+'" y="'+(y(acc)-6)+'" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink)">'+fmt(acc)+'</text>';
+          else if(st.met!=='pct'||(st.dim==='cat'&&y(acc)>y0+ch-16))svg+='<text x="'+cx+'" y="'+(y(acc)-6)+'" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink)">'+fmt(acc)+'</text>';
         } else {
           var ps=g.parts.filter(function(p){return p.c.k!=='I'}),sub=(band*0.84)/Math.max(1,ps.length);
           ps.forEach(function(p,j){var v=vOf(p,g.tot),bx=cx-band*0.42+sub*j;
@@ -1884,7 +1885,7 @@ S.clients=DATA.clients;S.metrics=DATA.metrics;S.audience=DATA.audience;S.audday=
         svg+='<text x="'+cx+'" y="'+(y0+ch+18)+'" text-anchor="middle" font-size="12.5" fill="var(--ink)">'+esc(lab[g.key])+'</text>';
       });
       var leg=catObjs.filter(function(c){return !(st.met==='cpl'&&c.k==='I')}).map(function(c){return '<span style="display:inline-flex;align-items:center;gap:6px;margin-right:14px;font-size:13px;color:var(--muted)"><i style="width:10px;height:10px;border-radius:3px;background:'+c.c+';display:inline-block"></i>'+c.n+'</span>'}).join('');
-      var title={leads:'Leads (mensagens) por categoria',inv:'Investimento por categoria',cpl:'Custo por lead por categoria (investimento total ÷ leads)',pct:'Participação de cada categoria nos leads'}[st.met];
+      var title={leads:'Leads (mensagens) por categoria',inv:'Investimento por categoria',cpl:'Custo por lead por categoria (investimento total ÷ leads)',pct:(st.dim==='cat'?'Participação de cada categoria no total de leads':st.dim==='loja'?'Participação de cada categoria nos leads de cada loja':'Participação de cada categoria nos leads de cada mês')}[st.met];
       $('gfc-chart').innerHTML='<div style="font-weight:600;margin:6px 0 2px">'+title+'</div><div style="margin-bottom:4px">'+leg+'</div><svg viewBox="0 0 '+W+' '+H+'" width="100%" style="min-width:560px" role="img" aria-label="'+esc(title)+'">'+svg+'</svg>';
     }
     var all=sum(months,stores,CATS.map(function(c){return c.k}));
